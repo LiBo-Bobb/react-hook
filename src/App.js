@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, createContext, lazy, Suspense } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+const BatteryContnet = createContext(90)
+
+
+const About = lazy(() => import(/*.webpackChunkName:."about"*/'./About'))
+
+
+
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      count: 0,
+    }
+  }
+
+
+
+
+
+  render() {
+    const { count } = this.state
+    return <div>
+
     </div>
-  );
+  }
 }
+
+
 
 export default App;
