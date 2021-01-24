@@ -1,26 +1,4 @@
-import React, { useState, useMemo, memo, useCallback, useRef, PureComponent, useEffect } from 'react'
-
-
-
-
-
-
-
-
-// function Counter(props) {
-//   return <h1>
-//     Counter:{props.count}
-//   </h1>
-// }
-
-// memo  性能优化
-// const Counter = memo(function Counter(props) {
-//   console.log("Counter render....")
-//   return <h1 onClick={props.onClick}>
-//     double Counter:{props.count}
-//   </h1>
-// })
-
+import React, { useState, useCallback, useRef, PureComponent, useEffect } from 'react'
 
 class Counter extends PureComponent {
   speak() {
@@ -34,14 +12,12 @@ class Counter extends PureComponent {
     </h1>
   }
 }
-// let it = ""
 
 
 
 // useRef  二种用法
 function App(props) {
   const [count, setCount] = useState(() => {
-    // console.log("initCOunt.....")
     // 这里只会执行一次  
     return props.defaultCount || 0
   });

@@ -79,7 +79,7 @@ class App2 extends Component {
 }
 function App(props) {
   const [count, setCount] = useState(() => {
-    console.log("initCOunt.....")
+    // console.log("initCOunt.....")
     // 这里只会执行一次  
     return props.defaultCount || 0
   });
@@ -134,10 +134,13 @@ function App(props) {
     <button onClick={() => { setCount(count + 1) }}>
       点击{count}
     </button>
+    <br />
     {
-      count % 2 ? <span id="size">
-        span--size:{size.width}*{size.heigth}
-      </span> : <p id="size">
+      count % 2
+        ? <span id="size">
+          span--size:{size.width}*{size.heigth}
+        </span>
+        : <p id="size">
           p--size:{size.width}*{size.heigth}
         </p>
     }

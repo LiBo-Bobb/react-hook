@@ -1,4 +1,4 @@
-import React, { useState, useMemo, memo, useCallback, useRef } from 'react'
+import React, { useState, useMemo, memo, useCallback, useRef, PureComponent } from 'react'
 
 
 
@@ -13,7 +13,7 @@ import React, { useState, useMemo, memo, useCallback, useRef } from 'react'
 //   </h1>
 // }
 
-// memo  性能优化
+// memo  性能优化  类似 PureComponent  属性的第一层不变，就不会触发冲渲染
 const Counter = memo(function Counter(props) {
   console.log("Counter render....")
   return <h1 onClick={props.onClick}>
@@ -36,9 +36,11 @@ function App(props) {
     return count * 2
   }, [count === 3])
 
+  // onClick 句柄  即事件处理函数  每次都改变，导致函数组件每次都触发重渲染
   const onClick1 = () => {
     console.log("onClick....")
   }
+  //  第二个参数传[]  ,只执行一次
   const onClick2 = useMemo(() => {
     return () => {
       console.log("onClick....")
@@ -49,7 +51,7 @@ function App(props) {
   const onClick = useCallback(() => {
     console.log("onClick....")
     setClickCount((clickCount) => clickCount + 1)
-    console.log("counterRef...",counterRef)
+    console.log("counterRef...", counterRef)
   }, [counterRef])
 
   return <div>
@@ -59,9 +61,6 @@ function App(props) {
     <br />
     clickCount:{clickCount}
     <Counter  count={double} onClick={onClick} />
-
-    {/* double:{double} */}
-
   </div>
 }
 
