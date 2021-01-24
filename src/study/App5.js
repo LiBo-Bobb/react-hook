@@ -10,6 +10,7 @@ const Control = memo(function Control(props) {
     if (!newText) {
       return
     }
+    //ssasa
     addTodo({
       id: ++idSeq,
       text: newText,
