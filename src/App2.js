@@ -1,4 +1,4 @@
-import React, { useState, useMemo, memo, useCallback } from 'react'
+import React, { useState, useMemo, memo, useCallback, useRef } from 'react'
 
 
 
@@ -29,8 +29,8 @@ function App(props) {
     // 这里只会执行一次  
     return props.defaultCount || 0
   });
-
-
+  const [clickCount, setClickCount] = useState(0);
+  const counterRef = useRef()
   // useMemo 有返回值 在渲染期间执行的
   const double = useMemo(() => {
     return count * 2
@@ -48,13 +48,17 @@ function App(props) {
   // 如果useMemo 返回的是一个函数，则可以直接使用useCallback ，省去顶层函数
   const onClick = useCallback(() => {
     console.log("onClick....")
-  },[])
+    setClickCount((clickCount) => clickCount + 1)
+    console.log("counterRef...",counterRef)
+  }, [counterRef])
 
   return <div>
     <button onClick={() => { setCount(count + 1) }}>
       点击{count}
     </button>
-    <Counter count={double} onClick={onClick} />
+    <br />
+    clickCount:{clickCount}
+    <Counter  count={double} onClick={onClick} />
 
     {/* double:{double} */}
 
